@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 객체</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name: "홍길동",
+            age: 25,
+            skills: ['검술', '변신','월담'],
+            address: {
+                city: "서울",
+                zipCode: "12345"
+            },
+        };
+
+        // const alice = { ...person }; // 얕은 복사
+        const alice = structuredClone(person); // 깊은 복사
+        alice.name = "앨리스";
+        alice.age = 30;
+
+        alice.address.city = "뉴욕";
+        alice.skills.push("마법");
+
+        console.log(person,alice);
+
+        // console.log(person.name); // 홍길동
+        
+        //  const message = JSON.stringify(person); // 함수 제외한 객체의 문자열 표현
+
+        // console.log(message.age); // undefined
+
+        // console.log(message, person); // message는 문자열, person은 객체
+        //  person.skills = undefined; 
+        //delete person.skills; 
+        //console.log(message, person);
+
+        //const hong = JSON.parse(message);
+        //console.log(hong); 
+    </script>
+</body>
+</html>

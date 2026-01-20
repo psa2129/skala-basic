@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switcher</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --border-color: #cccccc;
+        }
+
+        body.dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --border-color: #444444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 20px;
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .theme-selector label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .theme-selector input[type="radio"] {
+            cursor: pointer;
+        }
+
+        .content {
+            border: 2px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-selector">
+        <label>
+            <input type="radio" name="theme" value="light" checked>
+            라이트 테마
+        </label>
+        <label>
+            <input type="radio" name="theme" value="dark">
+            다크 테마
+        </label>
+    </div>
+
+    <div class="content">
+        <h1>테마 전환 예제</h1>
+        <p>CSS 사용자 정의 변수를 활용하여 테마를 전환할 수 있습니다.</p>
+    </div>
+
+    <script>
+        const themeRadios = document.querySelectorAll('input[name="theme"]');
+        const body = document.body;
+
+        // 저장된 테마 복원
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            document.querySelector('input[value="dark"]').checked = true;
+        }
+
+        // 테마 변경 이벤트
+        themeRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'dark') {
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

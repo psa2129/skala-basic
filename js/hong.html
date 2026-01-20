@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>분신 홍길동 - 그림자와 분신 기술 없애기</title>
+</head>
+<body>
+    <script>
+      const realHong = {
+        name: "홍길동",
+        job: '의적',
+        skills: ['검술', '전략','분신'],
+        shadow: {
+            color: "검은색"
+        }
+      };
+
+        const fakeHong = structuredClone(realHong); // 깊은 복사
+        fakeHong.name = "가짜 홍길동";
+        fakeHong.job = "의적";
+        fakeHong.skills.pop(); // 분신 기술 제거
+        delete fakeHong.shadow // 그림자 속성 제거
+
+        console.log(realHong, fakeHong);
+
+    </script>
+</body>
+</html>

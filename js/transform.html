@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍길동의 변신 실습</title>
+</head>
+<body>
+
+    <button onclick="transform()">홍길동 변신하기</button>
+
+    <script>
+        function transform() {
+            // 1. 내장 함수 prompt를 통해 입력 받기
+            var input = prompt("무엇으로 변신하시겠습니까?");
+
+            // 2. 입력 값에 따른 분기 처리
+            if (input) {
+                // 입력 값이 있는 경우 (확인 버튼 클릭 & 내용 있음)
+                alert("홍길동 변신 - " + input + "!");
+            } else {
+                // 입력 값이 없는 경우 (취소 버튼 클릭 또는 내용 없음)
+                alert("연기처럼 사라졌습니다.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transition & Transform</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 50px;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.5s ease, transform 0.5s ease;
+        }
+
+        .box:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+        .box.rotated {
+            transform: rotate(45deg);
+            transition: transform 1s ease-in-out
+        }
+        
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">Hover me</div>
+    <button onclick="toggleRotate()">Click Me!</button>
+
+    <script>
+        function toggleRotate() {
+            const box = document.querySelector('.box');
+            box.classList.toggle('rotated');
+        }
+    </script>
+</body>
+</html>

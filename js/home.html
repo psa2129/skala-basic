@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>홍길동의 식량 분배 실습</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: pink; 
+            color: #333;
+            text-align: center;
+        }
+        td:nth-child(1) {
+            text-align: center;
+            font-weight: bold;
+            width: 20%;
+        }
+        .note {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>홍길동의 식량 분배</h1>
+        <p>각 사람에게 식량을 공평하게 분배한 결과입니다.</p>
+
+        <table id="distributionTable">
+            <thead>
+                <tr>
+                    <th>이름 (name)</th>
+                    <th>받은 물건 (items)</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+        
+    </div>
+
+    <script>
+        const foods = [
+            "쌀", "보리", "콩", "감자", "양파", 
+            "마늘", "배추", "무", "고구마", "호박"
+        ];
+        
+        const poors = ["철수", "영희", "민수"];
+
+        const results = poors.map(person => {
+            return { name: person, items: [] };
+        });
+
+        foods.forEach((food, index) => {
+         
+            const poorIndex = index % poors.length;
+            
+            results[poorIndex].items.push(food);
+        });
+
+        console.log("--- 식량 분배 결과 ---");
+        console.table(results);
+
+        const tableBody = document.querySelector("#distributionTable tbody");
+        
+        results.forEach(person => {
+            const tr = document.createElement("tr");
+            
+            const nameTd = document.createElement("td");
+            nameTd.textContent = person.name;
+            tr.appendChild(nameTd);
+            
+            const itemsTd = document.createElement("td");
+            itemsTd.textContent = JSON.stringify(person.items).replace(/[\[\]"]/g, '').replace(/,/g, ', '); 
+            
+            tr.appendChild(itemsTd);
+            tableBody.appendChild(tr);
+        });
+    </script>
+</body>
+</html>

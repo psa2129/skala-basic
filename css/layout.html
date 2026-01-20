@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>검색 UI</title>
+    <style>
+        /* 1. 전체 레이아웃 (Grid 사용) */
+        /* 검색창 영역과 데이터 영역을 위아래로 배치하고 간격을 줍니다 */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto; /* 화면 중앙 정렬 */
+            
+            display: grid;
+            grid-template-rows: auto auto; /* 행 2개 생성 */
+            gap: 20px; /* 두 영역 사이의 간격 */
+            width : 80vw;
+        }
+
+        /* 2. 검색창 영역 (Flexbox 사용) */
+        /* 입력창과 버튼을 가로로 나란히 배치합니다 */
+        .search-box {
+            display: flex;
+            gap: 10px; /* 입력창과 버튼 사이 간격 */
+        }
+
+        .search-box input {
+            flex-grow: 1; /* 남은 공간을 입력창이 꽉 채우도록 설정 */
+            padding: 10px;
+            border: 1px solid #aaa;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #aaa;
+            cursor: pointer;
+        }
+
+        /* 3. 목록형 데이터 영역 스타일 */
+        .data-area {
+            border: 1px solid #ddd; /* 회색 테두리 */
+            padding: 20px;
+            min-height: 150px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 살짝 그림자 추가 */
+            background-color: rgb(0,125,0);
+        }
+
+        .data-area h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .data-area hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" placeholder="키워드 입력">
+            <button>검색</button>
+        </div>
+
+        <div class="data-area">
+            <h3>목록형 데이터 영역</h3>
+        </div>
+    </div>
+
+</body>
+</html>

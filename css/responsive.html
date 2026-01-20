@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 Grid 예제</title>
+    <style>
+        /* 1. 기본 스타일 (리셋 및 색상) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 2. 각 구역별 색상 및 크기 설정 */
+        header, footer {
+            background-color: #333; /* 검은색 배경 */
+            padding: 20px;
+        }
+
+        aside {
+            background-color: #dcdcdc; /* 연한 회색 */
+            color: #333; /* 글자색 검정 */
+            padding: 40px; /* 높이감을 주기 위한 패딩 */
+        }
+
+        main {
+            background-color: #f4f4f4; /* 아주 밝은 회색 */
+            color: #333;
+            padding: 40px;
+        }
+
+        /* =========================================
+           3. 레이아웃 (Grid & 반응형) - 여기가 핵심! 
+           ========================================= */
+        
+        /* 전체 컨테이너: 헤더, 중간(wrap), 푸터를 세로로 배치 */
+        .container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh; /* 화면 전체 높이 사용 */
+            gap: 20px; /* 구역 간 간격 */
+        }
+
+        /* 중간 영역 (사이드바 + 메인)을 감싸는 박스 */
+        .content-wrap {
+            display: grid;
+            gap: 10px;
+        }
+
+        /* 📱 모바일 화면 (기본값) */
+        .content-wrap {
+            /* 1열로 배치 */
+            grid-template-columns: 1fr;
+        }
+
+        /* 중요: 모바일에서는 메인이 위로 가야 함 */
+        main { order: 1; }   /* 첫 번째 순서 */
+        aside { order: 2; }  /* 두 번째 순서 */
+
+
+        /* 💻 태블릿/데스크탑 화면 (768px 이상) */
+        @media (min-width: 768px) {
+            .content-wrap {
+                /* 사이드바(1) : 메인(3) 비율로 가로 배치 */
+                grid-template-columns: 1fr 3fr;
+            }
+
+            /* 데스크탑에서는 사이드바가 왼쪽이어야 함 */
+            aside { order: 1; } /* 왼쪽 */
+            main { order: 2; }  /* 오른쪽 */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            헤더
+        </header>
+
+        <section class="content-wrap">
+            <aside>
+                사이드바
+            </aside>
+            <main>
+                메인 콘텐츠
+            </main>
+        </section>
+
+        <footer>
+            푸터
+        </footer>
+    </div>
+
+</body>
+</html>

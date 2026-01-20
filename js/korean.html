@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한글 판별 실습</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            border: 1px solid #ddd;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffc107; /* 이미지의 노란색 포인트 */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #e0a800;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .true { color: green; }
+        .false { color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>한글 판별기</h2>
+        <p>이름을 입력하고 판별 버튼을 누르세요.</p>
+        
+        <input type="text" id="nameInput" placeholder="이름 입력 (예: 홍길동)">
+        <button onclick="checkInput()">판별하기</button>
+        
+        <div id="result">결과가 여기에 표시됩니다.</div>
+    </div>
+
+    <script>
+        // 1. 핵심 함수: 정규 표현식을 사용한 한글 판별
+        function isKoreanName(str) {
+            // 정규식 설명:
+            // ^ : 문자열의 시작
+            // [가-힣] : 한글 음절 전체 범위
+            // + : 한 글자 이상 반복
+            // $ : 문자열의 끝
+            const regex = /^[가-힣]+$/;
+            
+            return regex.test(str);
+        }
+
+        // 2. 화면 UI와 상호작용하는 함수
+        function checkInput() {
+            const inputVal = document.getElementById('nameInput').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isKoreanName(inputVal)) {
+                resultDiv.innerHTML = `"${inputVal}" : <span class="true">true (한글입니다)</span>`;
+            } else {
+                resultDiv.innerHTML = `"${inputVal}" : <span class="false">false (한글이 아닙니다)</span>`;
+            }
+        }
+
+        // 3. 이미지에 있는 콘솔 로그 예제 실행 (F12 개발자 도구 콘솔에서 확인 가능)
+        console.log("--- 이미지 예제 실행 결과 ---");
+        console.log("홍길동: ", isKoreanName("홍길동")); // true
+        console.log("Tom: ", isKoreanName("Tom"));    // false
+    </script>
+</body>
+</html>
