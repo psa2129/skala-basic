@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 스타일 조작 - 토글</title>
+    <style>
+        /* 이미지 하단에 있는 스타일 코드 */
+        .highlight {
+            background-color: yellow;
+            color: red;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        /* 실습 화면과 유사하게 보이기 위한 컨테이너 스타일 (선택사항) */
+        .box {
+            border: 3px solid black;
+            padding: 20px;
+            width: 400px;
+            margin: 20px;
+        }
+        
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <p id="text">이 문장을 강조해보세요!</p>
+        
+        <button id="toggleBtn">강조 토글</button>
+    </div>
+
+    <script>
+        // 1. 필요한 요소 선택
+        const textElement = document.getElementById('text');
+        const buttonElement = document.getElementById('toggleBtn');
+
+        // 2. 버튼 클릭 이벤트 리스너 추가
+        buttonElement.addEventListener('click', function() {
+            // highlight 클래스 있는지 판단
+            if (textElement.classList.contains('highlight')) {
+                // 있으면 제거
+                textElement.classList.remove('highlight');
+            } else {
+                // 없으면 추가
+                textElement.classList.add('highlight');
+            }
+        });
+    </script>
+</body>
+</html>

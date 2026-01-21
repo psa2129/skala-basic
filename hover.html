@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOVER 예제</title>
+
+    <style>
+        .button-normal {
+            background-color: green;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .button-hover {
+            background-color: #11c9dd;
+            color: white;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <!--마우스 hover 선택자 -> mouseover-->
+    <h1>HOVER 예제</h1>
+    <button id="myButton" class="button-normal">버튼에 마우스를 올려보세요!</button>
+
+    <script>
+        const button = document.getElementById('myButton');
+
+        button.addEventListener('mouseover', () => {
+            button.classList.add('button-hover');
+        });
+
+        button.addEventListener('mouseout', () => {
+            button.classList.remove('button-hover');
+        });
+    </script>
+</body>
+</html>

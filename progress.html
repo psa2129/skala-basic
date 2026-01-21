@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Progress Bar 실습</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="progress m-5" role="progressbar">
+        <div id="progressBar" class="progress-bar progress-bar-striped" style="width: 10%">10%</div>
+    </div>
+    
+    <button id="startBtn" type="button" class="btn btn-primary m-5">Start</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const progressBar = document.getElementById('progressBar');
+
+        startBtn.addEventListener('click', function() {
+
+            startBtn.disabled = true;
+
+            let currentProgress = 10;
+
+            const randomTime = Math.floor(Math.random() * 2000) + 3000;
+            console.log(`랜덤 종료 시간: ${randomTime}ms`);
+
+            
+            const intervalId = setInterval(() => {
+                currentProgress += 10;
+                
+                if (currentProgress > 100) currentProgress = 100;
+
+                progressBar.style.width = currentProgress + '%';
+                progressBar.textContent = currentProgress + '%';
+
+            }, 1000);
+
+      
+            setTimeout(() => {
+                clearInterval(intervalId); 
+                progressBar.style.width = '100%';
+                progressBar.textContent = '100%';
+                
+                startBtn.disabled = false;
+                
+            }, randomTime);
+        });
+    </script>
+</body>
+
+</html>
